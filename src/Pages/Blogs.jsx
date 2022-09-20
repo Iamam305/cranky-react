@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getBlogs } from "../service/BlogServices";
-import InfiniteScroll from "react-infinite-scroller";
+
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -30,35 +30,39 @@ const Blogs = () => {
               evil and everything sucks… keep looking.
             </p>
           </div>
-        
-            <div className="flex flex-wrap -m-4">
-              {blogs?.map((blog) => (
-                <div className="xl:w-1/3 md:w-1/2 p-4">
-                  <div className="bg-gray-100 p-6 rounded-lg">
-                    <img
-                      className="h-40 rounded w-full object-cover object-center mb-6"
-                      src={blog.jetpack_featured_media_url}
-                      alt="content"
-                    />
-                   
-                    <h2 className="text-lg text-gray-900 font-medium title-font mb-4">
-                     {blog.title.rendered}
-                    </h2>
-                    <div className="leading-relaxed text-base">
+
+          <div className="flex flex-wrap -m-4">
+            {blogs?.map((blog) => (
+              <div className="xl:w-1/3 md:w-1/2 p-4">
+                <div className="bg-gray-100 p-6 rounded-lg">
+                  <img
+                    className="h-40 rounded w-full object-cover object-center mb-6"
+                    src={blog.jetpack_featured_media_url}
+                    alt="content"
+                  />
+
+                  <h2 className="text-lg text-gray-900 font-medium title-font mb-4">
+                    {blog.title.rendered}
+                  </h2>
+                  <div className="leading-relaxed text-base">
                     <span
-              dangerouslySetInnerHTML={{
-                __html: blog.excerpt.rendered,
-              }}
-              className="blog-content"
-            />
-                     {}
-                    </div>
-                    <Link to={`/blogs/${blog.id}`}  className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">Read more</Link>
+                      dangerouslySetInnerHTML={{
+                        __html: blog.excerpt.rendered,
+                      }}
+                      className="blog-content"
+                    />
+                    {}
                   </div>
+                  <Link
+                    to={`/blogs/${blog.id}`}
+                    className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0"
+                  >
+                    Read more
+                  </Link>
                 </div>
-              ))}
-            </div>
-       
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </div>
